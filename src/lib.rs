@@ -1304,7 +1304,7 @@ mod test {
     }
 
     #[test]
-    fn test_substr_pass4() {
+    fn test_json_regex() {
         let regex_decomposed: DecomposedRegexConfig =
             serde_json::from_reader(File::open("./test_regexes/regex3_test.json").unwrap())
                 .unwrap();
@@ -1314,7 +1314,14 @@ mod test {
                 &[Path::new("./test_regexes/substr3_test_lookup.txt").to_path_buf()],
             )
             .unwrap();
-        let characters: Vec<u8> = "dummy\r\nfrom:alice<alice@gmail.com>\r\n"
+        let characters: Vec<u8> =
+r#"{
+    "key0": "value0", 
+    "key1": {
+        "key2": "dcmmc"
+    },
+    "dummy": "dummy"
+}"#
             .chars()
             .map(|c| c as u8)
             .collect();
@@ -1326,7 +1333,7 @@ mod test {
         // Successful cases
         let circuit = TestCircuit2::<Fr> {
             characters,
-            correct_substrs: vec![(18, "alice@gmail.com".to_string())],
+            correct_substrs: vec![(56, "dcmmc".to_string())],
             is_success: true,
             _marker: PhantomData,
         };

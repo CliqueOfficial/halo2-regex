@@ -3,22 +3,32 @@
     "parts": [
         {
             "is_public": false,
-            "regex_def": "((0|1|2|3|4|5|6|7|8|9|a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|!|\"|#|$|%|&|'|\\(|\\)|\\*|\\+|,|-|.|/|:|;|<|=|>|\\?|@|[|\\\\|]|^|_|`|{|\\||}|~| |\t|\n|\r|\\x0b|\\x0c)+\r\n)?",
-            "max_size": 128
+            "regex_def": "{",
+            "max_size": 1
         },
         {
             "is_public": false,
-            "regex_def": "from:",
-            "max_size": 7
+            "regex_def": "((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|0|\"| |{|}|,|:|\n)+)?",
+            "max_size": 40
         },
         {
             "is_public": false,
-            "regex_def": "((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|0|1|2|3|4|5|6|7|8|9|_|\\.|\"| |@)+<)?",
-            "max_size": 20
+            "regex_def": "\"key1\": {",
+            "max_size": 9
+        },
+        {
+            "is_public": false,
+            "regex_def": "((a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|0|\"| |{|}|,|:|\n)+)?",
+            "max_size": 40
+        },
+        {
+            "is_public": false,
+            "regex_def": "\"key2\": \"",
+            "max_size": 9
         },
         {
             "is_public": true,
-            "regex_def": "(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|0|1|2|3|4|5|6|7|8|9|_|\\.|-)+@(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|z|A|B|C|D|E|F|G|H|I|J|K|L|M|N|O|P|Q|R|S|T|U|V|W|X|Y|Z|0|1|2|3|4|5|6|7|8|9|_|\\.|-)+",
+            "regex_def": "(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y)+",
             "max_size": 20,
             "solidity": {
                 "type": "String"
@@ -26,8 +36,18 @@
         },
         {
             "is_public": false,
-            "regex_def": ">?\r\n",
-            "max_size": 3
+            "regex_def": "\"",
+            "max_size": 1
+        },
+        {
+            "is_public": false,
+            "regex_def": "(a|b|c|d|e|f|g|h|i|j|k|l|m|n|o|p|q|r|s|t|u|v|w|x|y|0|\"| |{|}|,|:|\n)+",
+            "max_size": 40
+        },
+        {
+            "is_public": false,
+            "regex_def": "}",
+            "max_size": 1
         }
     ]
 }
