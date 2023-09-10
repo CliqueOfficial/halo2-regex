@@ -70,6 +70,7 @@ use std::{
     marker::PhantomData,
 };
 use vrm::DecomposedRegexConfig;
+use std::time::Instant;
 
 /// Output type definition of [`RegexVerifyConfig`].
 #[derive(Debug, Clone, Default)]
@@ -1318,7 +1319,7 @@ mod test {
 r#"{
     "key0": "value0", 
     "key1": {
-        "key2": "dcmmc"
+        "key2": 1692776393,
     },
     "dummy": "dummy"
 }"#
@@ -1333,13 +1334,17 @@ r#"{
         // Successful cases
         let circuit = TestCircuit2::<Fr> {
             characters,
-            correct_substrs: vec![(56, "dcmmc".to_string())],
+            correct_substrs: vec![(55, "1692776393".to_string())],
             is_success: true,
             _marker: PhantomData,
         };
 
+        let before = Instant::now();
         let prover = MockProver::run(K as u32, &circuit, vec![]).unwrap();
+        println!("proving time: {:.2?}s", before.elapsed());
+        let before = Instant::now();
         assert_eq!(prover.verify(), Ok(()));
+        println!("verifying time: {:.2?}s", before.elapsed());
         // CircuitCost::<Eq, RegexCheckCircuit<Fp>>::measure((k as u128).try_into().unwrap(), &circuit)
         println!(
             "{:?}",
